@@ -32,7 +32,7 @@ export default function Contact({
             {" "}
             <img
               style={{ width: "30px" }}
-              src="/insta.svg"
+              src="./assets/insta.svg"
               alt="instagram icon"
             />
           </a>

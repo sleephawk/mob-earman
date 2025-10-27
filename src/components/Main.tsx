@@ -22,11 +22,11 @@ export function Main() {
   };
 
   function handleClickFromButton(): void {
-    bigFalseButton();
     setZoom("scale(0.2)");
     setTimeout(() => {
       setZoom("translate(0, 0) scale(1)");
       setOp(1);
+      bigFalseButton();
     }, 500);
   }
   function handleClickFromNav(value: string, cl: string): void {
@@ -54,7 +54,7 @@ export function Main() {
           break;
         }
       }
-    }, 1000);
+    }, 1500);
   }
   return (
     <Template
@@ -99,7 +99,7 @@ export function Main() {
             playsInline // could only render this way
             style={{ transform: `${zoom}` }}
           >
-            <source src="/assets/mob4.webm" type="video/webm" />
+            <source src="./assets/mob4.webm" type="video/webm" />
           </video>
         </div>
       }
