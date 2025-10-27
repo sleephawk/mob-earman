@@ -1,0 +1,108 @@
+import Template from "./Template";
+import Nav from "./Nav";
+import { useState } from "react";
+import Contact from "./Contact";
+import Bio from "./Bio";
+import Art from "./Art";
+import Events from "./Events";
+
+export function Main() {
+  const [zoom, setZoom] = useState<string>("translate(0, 0) scale(1)");
+  const [op, setOp] = useState<number>(1);
+  const [bioSwitch, setBioSwitch] = useState(false);
+  const [artSwitch, setArtSwitch] = useState(false);
+  const [eventsSwitch, setEventsSwitch] = useState(false);
+  const [contactSwitch, setContactSwitch] = useState(false);
+
+  const bigFalseButton = () => {
+    setBioSwitch(false);
+    setArtSwitch(false);
+    setEventsSwitch(false);
+    setContactSwitch(false);
+  };
+
+  function handleClickFromButton(): void {
+    bigFalseButton();
+    setZoom("scale(0.2)");
+    setTimeout(() => {
+      setZoom("translate(0, 0) scale(1)");
+      setOp(1);
+    }, 500);
+  }
+  function handleClickFromNav(value: string, cl: string): void {
+    setZoom("translate(0, 0) scale(0.2)");
+    setTimeout(() => {
+      setZoom(value);
+      setOp(0);
+    }, 500);
+    setTimeout(() => {
+      switch (cl) {
+        case "bio": {
+          setBioSwitch(true);
+          break;
+        }
+        case "art": {
+          setArtSwitch(true);
+          break;
+        }
+        case "events": {
+          setEventsSwitch(true);
+          break;
+        }
+        case "contact": {
+          setContactSwitch(true);
+          break;
+        }
+      }
+    }, 1000);
+  }
+  return (
+    <Template
+      content={
+        <div
+          className="main"
+          style={{
+            position: "relative",
+          }}
+        >
+          <Nav onNavClick={handleClickFromNav} opFromParent={op} />
+
+          <Bio
+            cb={() => {
+              handleClickFromButton();
+            }}
+            visible={bioSwitch}
+          />
+          <Art
+            cb={() => {
+              handleClickFromButton();
+            }}
+            visible={artSwitch}
+          />
+          <Events
+            cb={() => {
+              handleClickFromButton();
+            }}
+            visible={eventsSwitch}
+          />
+          <Contact
+            cb={() => {
+              handleClickFromButton();
+            }}
+            visible={contactSwitch}
+          />
+          <video
+            className="main__video"
+            autoPlay
+            loop
+            muted
+            playsInline // could only render this way
+            style={{ transform: `${zoom}` }}
+          >
+            <source src="/assets/mob4.webm" type="video/webm" />
+          </video>
+        </div>
+      }
+    />
+  );
+}
