@@ -148,18 +148,19 @@ nav {
   transition: opacity 0.5s ease-in;
   top: 0;
   z-index: 11;
-  background-color: #da773070;
+  background-color: rgba(218, 119, 48, 0.217);
 }
 
 .bioPage {
-  top: 20%;
+  font-size: 0.85rem;
+  top: 10%;
   left: 40%;
   height: 500px;
   width: 300px;
   overflow: scroll;
   @include media(768px) {
     left: 10%;
-    background-color: #da7730d5;
+    background-color: #c28335;
     padding: 10px;
   }
 }
