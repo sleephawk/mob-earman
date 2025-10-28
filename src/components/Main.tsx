@@ -7,7 +7,10 @@ import Art from "./Art";
 import Events from "./Events";
 
 export function Main() {
-  const [zoom, setZoom] = useState<string>("translate(0, 0) scale(1)");
+  const initialScale: number = 0.4;
+  const [zoom, setZoom] = useState<string>(
+    `translate(0, 0) scale(${initialScale})`
+  );
   const [op, setOp] = useState<number>(1);
   const [bioSwitch, setBioSwitch] = useState(false);
   const [artSwitch, setArtSwitch] = useState(false);
@@ -24,7 +27,7 @@ export function Main() {
   function handleClickFromButton(): void {
     setZoom("scale(0.2)");
     setTimeout(() => {
-      setZoom("translate(0, 0) scale(1)");
+      setZoom(`translate(0, 0) scale(${initialScale})`);
       setOp(1);
       bigFalseButton();
     }, 500);
@@ -65,7 +68,11 @@ export function Main() {
             position: "relative",
           }}
         >
-          <Nav onNavClick={handleClickFromNav} opFromParent={op} />
+          <Nav
+            visible={!!op}
+            onNavClick={handleClickFromNav}
+            opFromParent={op}
+          />
 
           <Bio
             cb={() => {
@@ -99,7 +106,7 @@ export function Main() {
             playsInline // could only render this way
             style={{ transform: `${zoom}` }}
           >
-            <source src="./assets/mob4.webm" type="video/webm" />
+            <source src="./assets/mob.webm" type="video/webm" />
           </video>
         </div>
       }

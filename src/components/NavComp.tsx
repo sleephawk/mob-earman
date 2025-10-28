@@ -5,12 +5,14 @@ export default function NavComp({
   zoomValue,
   onClickCbFromParent,
   opacity,
+  visible,
 }: {
   title: string;
   lnk?: string;
   t?: boolean;
   zoomValue: string;
   opacity: number;
+  visible: boolean;
   onClickCbFromParent: (value: string, cl: string) => void;
 }) {
   const cl = title.toLowerCase();
@@ -24,7 +26,7 @@ export default function NavComp({
         href={lnk}
         target={t ? "_blank" : undefined}
         rel={t ? "noopener noreffer" : undefined}
-        style={{ opacity: opacity }}
+        style={{ opacity: opacity, pointerEvents: visible ? "auto" : "none" }}
       >
         {title}
       </a>
